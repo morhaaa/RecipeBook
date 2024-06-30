@@ -48,7 +48,7 @@ function LandingPage() {
             {" "}
             1000+ recipes{" "}
           </span>
-          and start sharing your own delicious creations with us.
+          and start sharing your delicious with us.
         </motion.p>
         <motion.button
           className="bg-btn-primary hover:bg-btn-primary-hovered w-60 py-3 rounded-md text-white font-bold mt-4"
