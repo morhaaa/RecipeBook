@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 
 function LandingPage() {
   return (
-    <main className="h-screen w-screen flex bg-slate-100 px-24">
-      <div className="flex flex-col gap-y-2.5 justify-center items-start flex-1 h-full">
-        <h1 className="font-bold text-6xl">
+    <main className="h-screen w-screen flex flex-col gap-y-8 md:flex-row bg-slate-100 p-6 md:p-10 lg:p-20 xl:p-24">
+      <div className="flex flex-col gap-y-2.5 justify-center items-center text-center md:items-start md:text-start flex-1 h-full">
+        <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl xl:text-6xl">
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -38,7 +38,7 @@ function LandingPage() {
           🔥 The largest site for food recipes
         </motion.span>
         <motion.p
-          className="text-xl text-secondary pt-6"
+          className="text-lg md:text-xl text-secondary md:py-2 lg:py-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 1.5 }}
@@ -51,7 +51,7 @@ function LandingPage() {
           and start sharing your delicious with us.
         </motion.p>
         <motion.button
-          className="bg-btn-primary hover:bg-btn-primary-hovered w-60 py-3 rounded-md text-white font-bold mt-4"
+          className="bg-btn-primary hover:bg-btn-primary-hovered w-48 md:w-60 py-1.5 md:py-2 lg:py-3 rounded-md text-white font-bold"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 1.5 }}
@@ -68,7 +68,7 @@ function LandingPage() {
         <img
           src={"/assets/placeholder.png"}
           alt={"Hero image"}
-          className="w-full h-auto"
+          className="w-full h-auto max-w-md md:max-w-full"
         />
       </motion.div>
     </main>
