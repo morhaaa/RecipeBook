@@ -1,4 +1,4 @@
-import CardRecipe from "../components/card-recipes";
+import CardRecipe from "../components/card-recipe";
 import Filters from "../components/filters";
 import Header from "../components/header";
 import SearchBar from "../components/search-bar";
