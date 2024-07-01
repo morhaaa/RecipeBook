@@ -1,10 +1,23 @@
+import { useQuery } from "@tanstack/react-query";
 import CardRecipe from "../components/card-recipe";
 import Filters from "../components/filters";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import SearchBar from "../components/search-bar";
+import { toast } from "react-hot-toast";
+import { getRandomRating, resolvePath } from "../lib/utils";
+import { getRecipes } from "../api/recipes";
 
 function Recipes() {
+  const { data, isError, error } = useQuery<Recipe[], Error>({
+    queryKey: ["recipes"],
+    queryFn: getRecipes,
+  });
+
+  if (isError) {
+    toast.error(`Si è verificato un errore: ${error?.message}`);
+  }
+
   return (
     <main className="min-h-screen">
       <Header />
@@ -21,20 +34,22 @@ function Recipes() {
         </div>
 
         <div className="flex-1 flex flex-wrap justify-center gap-10 pt-4">
-          {Array.from(Array(8)).map((_, i) => (
-            <CardRecipe
-              key={i}
-              imageSrc={"assets/poke_placeholder.png"}
-              title={"Poke"}
-              description={
-                "Cook chicken with onion and garlic. Add curry powder and coconut milk. Simmer until done"
-              }
-              rating="4"
-              diet="Vegeterian"
-              cuisine="Italian"
-              difficulty="Easy"
-            />
-          ))}
+          {data ? (
+            data.map((recipe) => (
+              <CardRecipe
+                key={recipe.id}
+                imageSrc={resolvePath(recipe.image)}
+                title={recipe.name}
+                description={recipe.instructions}
+                difficulty={recipe.difficultyId}
+                diet={recipe.dietId}
+                cuisine={recipe.cuisineId}
+                rating={getRandomRating()}
+              />
+            ))
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
       <Footer />
