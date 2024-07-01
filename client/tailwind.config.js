@@ -20,9 +20,9 @@ module.exports = {
       colors: {
         primary: "#0f172a",
         secondary: "#374151",
-        "primary-orange": "#ea580c",
-        "btn-primary": "#f97316",
-        "btn-primary-hovered": "#ea580c",
+        "primary-orange": "#FFA040",
+        "btn-primary": "#FFA040",
+        "btn-primary-hovered": "#ED9121",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
