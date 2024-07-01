@@ -1,5 +1,6 @@
 import CardRecipe from "../components/card-recipe";
 import Filters from "../components/filters";
+import Footer from "../components/footer";
 import Header from "../components/header";
 import SearchBar from "../components/search-bar";
 
@@ -7,7 +8,7 @@ function Recipes() {
   return (
     <main className="min-h-screen">
       <Header />
-      <div className="px-24 pt-10 flex flex-col gap-y-4">
+      <div className="px-24 py-20 flex flex-col gap-y-5">
         <SearchBar />
         <Filters
           filters={["Vegetarian", "Gluten-free", "Mexican", "Healthy"]}
@@ -30,6 +31,7 @@ function Recipes() {
           ))}
         </div>
       </div>
+      <Footer />
     </main>
   );
 }
