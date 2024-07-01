@@ -1,15 +1,19 @@
 import CardRecipe from "../components/card-recipes";
+import Filters from "../components/filters";
 import Header from "../components/header";
+import SearchBar from "../components/search-bar";
 
 function Recipes() {
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen">
       <Header />
-      <div className="px-24 pt-4">
-        <p className="text-3xl font-medium text-secondary border-b py-4">
-          Discover Recipes
-        </p>
-        <div className="flex flex-wrap justify-center gap-10 p-4">
+      <div className="px-24 pt-10 flex flex-col gap-y-4">
+        <SearchBar />
+        <Filters
+          filters={["Vegetarian", "Gluten-free", "Mexican", "Healthy"]}
+          activeFilters={["Mexican"]}
+        />
+        <div className="flex-1 flex flex-wrap justify-center gap-10 pt-4">
           {Array.from(Array(8)).map((_, i) => (
             <CardRecipe
               key={i}
@@ -26,7 +30,7 @@ function Recipes() {
           ))}
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
