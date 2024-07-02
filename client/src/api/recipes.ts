@@ -1,6 +1,8 @@
 import { resolvePath } from "../lib/utils";
 import { axiosInstance } from "./axios";
 
+const expand = ["difficulty", "cuisine", "diet"];
+
 export const getRecipes = async (
   filters: ActiveFilters = {}
 ): Promise<Recipe[]> => {
@@ -8,7 +10,7 @@ export const getRecipes = async (
     params: {
       ...filters,
       _page: filters.page || 1,
-      _expand: ["difficulty", "cuisine", "diet"],
+      _expand: expand,
       _limit: 8,
     },
   };
@@ -30,5 +32,16 @@ export const getRecipes = async (
 
 export const getCategory = async (type: string): Promise<Category[]> => {
   const response = await axiosInstance.get(`/${type}`);
+  return response.data;
+};
+
+export const getRecipeInfo = async (recipeId: string): Promise<Recipe> => {
+  const params = {
+    _expand: expand,
+  };
+
+  const response = await axiosInstance.get(`/recipes/${recipeId}`, {
+    params: params,
+  });
   return response.data;
 };
