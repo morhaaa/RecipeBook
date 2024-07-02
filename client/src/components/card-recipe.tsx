@@ -28,7 +28,7 @@ const CardRecipe: React.FC<CardRecipeProps> = ({
     <div
       className="w-[18rem] border border-slate-200 shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer"
       onClick={() => {
-        navigate(`/recipe/${id}`);
+        navigate(`/recipes/${id}`);
       }}
     >
       <div className="w-full h-[14rem] relative">
