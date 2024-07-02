@@ -29,3 +29,10 @@ type Category = {
 type Cuisine = Category;
 type Diet = Category;
 type Difficulty = Category;
+
+type CommentRecipe = {
+  id: string;
+  comment: string;
+  date: Date;
+  rating: string;
+};
