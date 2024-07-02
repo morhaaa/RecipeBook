@@ -1,5 +1,5 @@
 import LandingPage from "./pages/landing-page";
-import Recipe from "./pages/recipe";
+import Recipe from "./pages/recipe-page";
 import Recipes from "./pages/recipes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";

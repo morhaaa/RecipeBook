@@ -1,6 +1,6 @@
 function Header() {
   return (
-    <header className="w-full px-6 py-3 flex justify-between items-center bg-white shadow-sm">
+    <header className="w-full px-6 py-3 flex justify-between items-center bg-white shadow-sm fixed z-50">
       <h4 className="text-lg font-bold">
         <span>Recipe</span>
         <span className="text-primary-orange">Book</span>

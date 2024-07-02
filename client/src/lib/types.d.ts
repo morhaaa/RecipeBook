@@ -8,6 +8,7 @@ type Recipe = {
   cuisine: Category;
   diet: Category;
   difficulty: Category;
+  ingredients?: string[];
 };
 
 type ActiveFilters = {
