@@ -9,6 +9,7 @@ import { getRecipes } from "../api/recipes";
 import { useState } from "react";
 import { LoaderCircle } from "lucide-react";
 import Pagination from "../components/pagination";
+import CreateRecipe from "../components/new-recipe-modal";
 
 function Recipes() {
   //State for tracking all filters
@@ -79,9 +80,7 @@ function Recipes() {
         <SearchBar onSearch={onSearch} value={activeFilters.q || ""} />
         <div className="flex justify-between w-full items-start">
           <Filters toggleFilters={toggleFilter} activeFilters={activeFilters} />
-          <button className="bg-btn-primary hover:bg-btn-primary-hovered px-6 py-1.5 rounded-md text-white font-medium">
-            Upload your recipe
-          </button>
+          <CreateRecipe />
         </div>
 
         <div className="min-h-[50vh] flex-1 flex flex-wrap justify-center gap-y-10 gap-x-8 py-6 ">
