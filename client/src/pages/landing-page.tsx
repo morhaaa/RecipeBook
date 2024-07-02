@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 function LandingPage() {
   return (
-    <main className="h-screen w-screen flex flex-col gap-y-8 md:flex-row bg-slate-100 p-6 md:p-10 lg:p-20 xl:p-24">
+    <main className="h-screen w-screen flex flex-col gap-y-8 md:flex-row p-6 md:p-10 lg:p-20 xl:p-24">
       <div className="flex flex-col gap-y-2.5 justify-center items-center text-center md:items-start md:text-start flex-1 h-full">
         <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl xl:text-6xl">
           <motion.span
@@ -16,7 +17,7 @@ function LandingPage() {
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, delay: 1.5 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
           >
             Can Be a Chef
           </motion.span>
@@ -24,7 +25,7 @@ function LandingPage() {
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, delay: 1.5 }}
+            transition={{ duration: 1.3, delay: 1.6 }}
           >
             with Recipe<span className="text-primary-orange">Book</span>
           </motion.span>
@@ -33,7 +34,7 @@ function LandingPage() {
           className="bg-orange-300/40 rounded-md py-1 px-3 text-primary-orange font-medium"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 1.5 }}
+          transition={{ duration: 1.3, delay: 1.6 }}
         >
           🔥 The largest site for food recipes
         </motion.span>
@@ -41,7 +42,7 @@ function LandingPage() {
           className="text-lg md:text-xl text-secondary md:py-2 lg:py-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 1.5 }}
+          transition={{ duration: 1.3, delay: 1.6 }}
         >
           Discover our
           <span className="text-primary-orange font-medium">
@@ -50,20 +51,22 @@ function LandingPage() {
           </span>
           and start sharing your delicious with us.
         </motion.p>
-        <motion.button
-          className="bg-btn-primary hover:bg-btn-primary-hovered w-48 md:w-60 py-1.5 md:py-2 lg:py-3 rounded-md text-white font-bold"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 1.5 }}
-        >
-          Explore
-        </motion.button>
+        <Link to={"/recipes"}>
+          <motion.button
+            className="bg-btn-primary hover:bg-btn-primary-hovered w-48 md:w-60 py-1.5 md:py-2 lg:py-3 rounded-md text-white font-bold"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.3, delay: 1.6 }}
+          >
+            Explore
+          </motion.button>
+        </Link>
       </div>
       <motion.div
         className="flex-1 flex items-center justify-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, delay: 1.5 }}
+        transition={{ duration: 1.3, delay: 1.6 }}
       >
         <img
           src={"/assets/placeholder.png"}
