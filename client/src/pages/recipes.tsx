@@ -8,6 +8,7 @@ import { toast } from "react-hot-toast";
 import { getRecipes } from "../api/recipes";
 import { useState } from "react";
 import { LoaderCircle } from "lucide-react";
+import Pagination from "../components/pagination";
 
 function Recipes() {
   //State for tracking all filters
@@ -43,6 +44,34 @@ function Recipes() {
     toggleFilter("q", text.length > 0 ? text : undefined);
   };
 
+  //Next page
+  const onNext = () => {
+    setActiveFilters((prevFilters) => ({
+      ...prevFilters,
+      page: Number(prevFilters.page || 1) + 1,
+    }));
+  };
+
+  //Previous page
+  const onBack = () => {
+    setActiveFilters((prevFilters) => ({
+      ...prevFilters,
+      page: Math.max(Number(prevFilters.page || 2) - 1, 1),
+    }));
+  };
+
+  /*
+  Explanation of the conditions in showPagination:
+  1. data && data.length > 0:
+    - Check 'data' Array
+
+  2. !(data.length < 8 && activeFilters.page === 1):
+    - Check if 'data.length' is less than 8 and we are on page 1.
+    - If both conditions are true (less than 8 elements and on page 1), the pagination component won't be displayed.
+  */
+  const showPagination =
+    data && data.length > 0 && !(data.length < 8 && activeFilters.page === 1);
+
   return (
     <main className="min-h-screen">
       <Header />
@@ -55,9 +84,9 @@ function Recipes() {
           </button>
         </div>
 
-        <div className="flex-1 flex flex-wrap justify-center gap-y-10 gap-x-8 pt-4 ">
+        <div className="min-h-[50vh] flex-1 flex flex-wrap justify-center gap-y-10 gap-x-8 py-6 ">
           {isLoading ? (
-            <div className="min-h-[50vh] flex-1 flex items-center justify-center">
+            <div className=" flex-1 flex items-center justify-center">
               <LoaderCircle
                 size={40}
                 strokeWidth={3}
@@ -78,13 +107,21 @@ function Recipes() {
               />
             ))
           ) : (
-            <div className="min-h-[50vh] flex-1 flex items-center justify-center">
+            <div className="flex-1 flex items-center justify-center">
               <div className="text-zinc-400 text-xl font-medium">
                 No recipe found
               </div>
             </div>
           )}
         </div>
+        {showPagination && (
+          <Pagination
+            activePage={activeFilters.page}
+            lastPage={data.length < 8}
+            onNext={onNext}
+            onBack={onBack}
+          />
+        )}
       </div>
       <Footer />
     </main>
