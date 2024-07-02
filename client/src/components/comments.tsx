@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { getComments } from "../api/comments";
 import dayjs from "dayjs";
+import toast from "react-hot-toast";
+import CommentForm from "./comment-form";
 
 interface CommentsProps {
   recipeId: string;
@@ -8,10 +10,14 @@ interface CommentsProps {
 
 function Comments({ recipeId }: CommentsProps) {
   // Fetch data
-  const { data, isLoading, isError, error } = useQuery<any, Error>({
+  const { data, isError, error } = useQuery<any, Error>({
     queryKey: [`comments_${recipeId}`],
     queryFn: () => getComments(recipeId),
   });
+
+  if (isError) {
+    toast.error(`Something went wrong: ${error?.message}`);
+  }
 
   return (
     <section className="">
@@ -41,6 +47,7 @@ function Comments({ recipeId }: CommentsProps) {
       ) : (
         <p className="text-center text-gray-500">No comments available</p>
       )}
+      <CommentForm />
     </section>
   );
 }
