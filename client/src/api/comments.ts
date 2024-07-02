@@ -10,7 +10,7 @@ export const getComments = async (
 export const postComment = async (
   req: CommentBody,
   recipeId: string
-): Promise<Recipe> => {
+): Promise<CommentRecipe> => {
   const response = await axiosInstance.post(
     `/recipes/${recipeId}/comments`,
     req
