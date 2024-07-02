@@ -97,6 +97,7 @@ function Recipes() {
             data.map((recipe) => (
               <CardRecipe
                 key={recipe.id}
+                id={recipe.id}
                 imageSrc={recipe.image}
                 title={recipe.name}
                 description={recipe.instructions}

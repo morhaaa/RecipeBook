@@ -1,6 +1,7 @@
 import LandingPage from "./pages/landing-page";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Recipe from "./pages/recipe";
 import Recipes from "./pages/recipes";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "/recipes",
     element: <Recipes />,
+  },
+  {
+    path: "/recipe/:recipeId",
+    element: <Recipe />,
   },
 ]);
 

@@ -1,7 +1,9 @@
 import { BarChart, ChefHat, CookingPot } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import React from "react";
 
 interface CardRecipeProps {
+  id: string;
   imageSrc: string;
   title: string;
   description: string;
@@ -12,6 +14,7 @@ interface CardRecipeProps {
 }
 
 const CardRecipe: React.FC<CardRecipeProps> = ({
+  id,
   imageSrc,
   title,
   rating,
@@ -20,8 +23,14 @@ const CardRecipe: React.FC<CardRecipeProps> = ({
   description,
   difficulty,
 }) => {
+  const navigate = useNavigate();
   return (
-    <div className="w-[18rem] border border-slate-200 shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer">
+    <div
+      className="w-[18rem] border border-slate-200 shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer"
+      onClick={() => {
+        navigate(`/recipe/${id}`);
+      }}
+    >
       <div className="w-full h-[14rem] relative">
         <img
           src={imageSrc}
