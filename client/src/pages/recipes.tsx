@@ -75,7 +75,7 @@ function Recipes() {
   return (
     <main className="min-h-screen">
       <Header />
-      <div className="px-20 py-10 flex flex-col gap-y-5">
+      <div className="px-20 pb-10 pt-24 flex flex-col gap-y-5">
         <SearchBar onSearch={onSearch} value={activeFilters.q || ""} />
         <div className="flex justify-between w-full items-start">
           <Filters toggleFilters={toggleFilter} activeFilters={activeFilters} />
