@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
-import { getComments } from "../api/comments";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { getComments, postComment } from "../api/comments";
 import dayjs from "dayjs";
 import toast from "react-hot-toast";
 import CommentForm from "./comment-form";
@@ -10,7 +10,7 @@ interface CommentsProps {
 
 function Comments({ recipeId }: CommentsProps) {
   // Fetch data
-  const { data, isError, error } = useQuery<any, Error>({
+  const { data, isError, error } = useQuery<CommentRecipe[], Error>({
     queryKey: [`comments_${recipeId}`],
     queryFn: () => getComments(recipeId),
   });
@@ -18,6 +18,25 @@ function Comments({ recipeId }: CommentsProps) {
   if (isError) {
     toast.error(`Something went wrong: ${error?.message}`);
   }
+
+  //Create a new Comment
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: (req: CommentBody) => postComment(req, recipeId),
+    onError: (error: Error) => {
+      toast.error(`Something went wrong: ${error.message}`);
+    },
+    onSuccess: () => {
+      toast.success("Comment created 🎉");
+      queryClient.invalidateQueries({ queryKey: [`comments_${recipeId}`] });
+    },
+  });
+
+  const onSubmit = (newComment: CommentBody) => {
+    if (recipeId) {
+      mutation.mutate(newComment);
+    }
+  };
 
   return (
     <section className="">
@@ -47,7 +66,7 @@ function Comments({ recipeId }: CommentsProps) {
       ) : (
         <p className="text-center text-gray-500">No comments available</p>
       )}
-      <CommentForm />
+      <CommentForm onSubmit={onSubmit} />
     </section>
   );
 }

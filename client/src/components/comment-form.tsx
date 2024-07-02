@@ -1,20 +1,27 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 
+interface CommentFormProps {
+  onSubmit: (formaData: CommentBody) => void;
+}
+
 type Inputs = {
   comment: string;
   rating: number;
 };
 
-function CommentForm() {
+function CommentForm({ onSubmit }: CommentFormProps) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isValid, isSubmitting },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+  const onSubmitForm: SubmitHandler<Inputs> = (data) => {
+    const request: CommentBody = { ...data, date: new Date() };
+    onSubmit(request);
+    reset();
   };
 
   const onInvalid = () => {
@@ -31,7 +38,7 @@ function CommentForm() {
   return (
     <section className="bg-gray-100 rounded-md shadow-md p-4">
       <h1 className="text-lg font-semibold mb-2">Add a comment</h1>
-      <form onSubmit={handleSubmit(onSubmit, onInvalid)}>
+      <form onSubmit={handleSubmit(onSubmitForm, onInvalid)}>
         <div className="mb-2">
           <textarea
             id="comment"

@@ -36,3 +36,9 @@ type CommentRecipe = {
   date: Date;
   rating: string;
 };
+
+type CommentBody = {
+  comment: string;
+  rating: number;
+  date: Date;
+};
