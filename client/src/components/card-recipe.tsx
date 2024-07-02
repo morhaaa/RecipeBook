@@ -14,31 +14,31 @@ interface CardRecipeProps {
 const CardRecipe: React.FC<CardRecipeProps> = ({
   imageSrc,
   title,
-  description,
   rating,
   diet,
   cuisine,
+  description,
   difficulty,
 }) => {
   return (
-    <div className="w-[16rem] border border-slate-200 shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer">
-      <div className="w-full h-[12rem] relative">
+    <div className="w-[18rem] border border-slate-200 shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer">
+      <div className="w-full h-[14rem] relative">
         <img
           src={imageSrc}
           alt={title}
           className="w-full h-full object-cover"
         />
-        <div className="h-16 w-full bg-gradient-to-b from-transparent to-slate-900 absolute bottom-0 opacity-75" />
+        <div className="h-14 w-full bg-gradient-to-b from-transparent via-transparent to-slate-100 absolute bottom-0" />
       </div>
-      <div className="px-3 py-2 flex flex-col bg-gradient-to-b from-slate-100 to-white rounded-t-md">
+      <div className="px-3 pb-4 pt-1 flex flex-col gap-1 bg-gradient-to-b from-slate-100 to-white rounded-t-md">
         <div className="flex flex-col gap-0.5">
           <div className="flex justify-between items-center">
             <p className="font-bold text-xl truncate">{title}</p>
             <p className="text-primary-orange text-lg font-bold">{rating} ★</p>
           </div>
         </div>
-        <div className="py-2 text-sm h-[7.5rem] flex flex-col">
-          <p className="text-slate-700 flex-1">{description}</p>
+        <div className="text-sm flex flex-col h-28">
+          <p className="text-slate-700 flex-1 pt-2">{description}</p>
           <div className="flex justify-between pt-2">
             <p className="flex gap-x-1 items-center text-xs text-secondary ">
               <CookingPot size={16} strokeWidth={1.25} />
