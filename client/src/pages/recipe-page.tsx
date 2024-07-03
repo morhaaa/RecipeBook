@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { ScrollRestoration, useParams } from "react-router-dom";
+import { Link, ScrollRestoration, useParams } from "react-router-dom";
 import { getRecipeInfo } from "../api/recipes";
 import { resolvePath } from "../lib/utils";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import {
+  ArrowLeft,
   BarChart,
   ChefHat,
   CookingPot,
@@ -31,6 +32,7 @@ function RecipePage() {
     <div className="w-screen min-h-screen flex flex-col">
       <Header />
       <ScrollRestoration />
+
       {isLoading ? (
         <div className=" flex-1 flex items-center justify-center  min-h-[80vh] text-zinc-500">
           <LoaderCircle
@@ -40,7 +42,12 @@ function RecipePage() {
           />
         </div>
       ) : data ? (
-        <div className="lg:px-20 px-10 md:px-14 pb-10 pt-24 flex flex-col gap-y-8">
+        <div className="lg:px-20 px-10 md:px-14 pb-10 pt-20 flex flex-col gap-y-4">
+          <Link to="/recipes">
+            <button className="font-bold text-lg text-primary-orange flex items-center gap-x-0.5 hover:underline">
+              <ArrowLeft size={16} strokeWidth={3} /> Back to List
+            </button>
+          </Link>
           <div className="flex flex-col md:flex-row gap-y-4 gap-x-10 flex-1">
             <img
               src={resolvePath(data.image)}
