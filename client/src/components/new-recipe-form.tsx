@@ -10,7 +10,7 @@ interface NewRecipeFormProps {
 
 interface FormData {
   name: string;
-  instruction: string;
+  instructions: string;
   ingredients: { name: string }[];
   cuisineId: string;
   dietId: string;
@@ -201,7 +201,7 @@ function NewRecipeForm({ onSubmitForm }: NewRecipeFormProps) {
           <textarea
             id="instruction"
             placeholder="Pasta al tartufo"
-            {...register("instruction", {
+            {...register("instructions", {
               required: "Instruction are required",
             })}
             className="w-full p-2  border rounded-lg shadow-md"
@@ -229,16 +229,15 @@ function NewRecipeForm({ onSubmitForm }: NewRecipeFormProps) {
 
           <ul className="flex-1 grid grid-rows-6 grid-flow-col gap-x-10 auto-cols-min px-2 mt-4">
             {fields.map((ingredient, index) => (
-              <li
-                key={index}
-                className="flex items-center justify-between w-24"
-              >
+              <li key={index} className="flex items-center justify-between ">
                 <input
                   {...register(`ingredients.${index}.name`)}
                   defaultValue={ingredient.name}
                   className="flex-1 outline-none hidden"
                 />
-                <label>{ingredient.name}</label>
+                <label className="w-40 truncate ellipse">
+                  {ingredient.name}
+                </label>
                 <button type="button" onClick={() => removeIngredient(index)}>
                   <CircleX strokeWidth={2} size={16} />
                 </button>

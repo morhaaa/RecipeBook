@@ -5,10 +5,9 @@ type Recipe = {
   instructions: string;
   image: string;
   rating: string;
-  cuisine: Category;
-  diet: Category;
-  difficulty: Category;
-  ingredients?: string[];
+  cuisine: Cuisine;
+  diet: Diet;
+  difficulty: Difficulty;
 };
 
 type ActiveFilters = {
@@ -45,7 +44,7 @@ type CommentBody = {
 
 type RecipeBody = {
   name: string;
-  instruction: string;
+  instructions: string;
   ingredients: string[];
   cuisineId: string;
   dietId: string;
