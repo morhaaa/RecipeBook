@@ -227,7 +227,7 @@ function NewRecipeForm({ onSubmitForm }: NewRecipeFormProps) {
             </button>
           </div>
 
-          <ul className="flex-1 grid  grid-rows-6 grid-flow-col gap-x-10 auto-cols-min px-2 mt-4">
+          <ul className="flex-1 grid grid-rows-6 grid-flow-col gap-x-10 auto-cols-min px-2 mt-4">
             {fields.map((ingredient, index) => (
               <li
                 key={index}
@@ -236,8 +236,9 @@ function NewRecipeForm({ onSubmitForm }: NewRecipeFormProps) {
                 <input
                   {...register(`ingredients.${index}.name`)}
                   defaultValue={ingredient.name}
-                  className="flex-1 outline-none"
+                  className="flex-1 outline-none hidden"
                 />
+                <label>{ingredient.name}</label>
                 <button type="button" onClick={() => removeIngredient(index)}>
                   <CircleX strokeWidth={2} size={16} />
                 </button>
