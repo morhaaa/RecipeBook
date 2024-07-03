@@ -101,7 +101,7 @@ comments.
 
 ## How to run
 
-This repository contains the `server` and `client` of RecipeBook. Below are the instructions to start each part of the project.
+This repository contains the server and client of RecipeBook's project. Below are the instructions to start each part of the project.
 
 For more information on the specifics of each project, you can refer to the individual README files:
 
@@ -163,7 +163,7 @@ Use the `script.sh` bash script to start both the server and the client with a s
    ./script.sh
    ```
 
-With these instructions, you will be able to start this fantastic project built by [Mohamed Rhanmi]("https://www.mohamedrhanmi.com/") & [Xtream]("https://xtreamers.io/").
+With these instructions, you will be able to start this fantastic project built by [Mohamed Rhanmi](https://www.mohamedrhanmi.com/) & [Xtream](https://xtreamers.io/).
 
 Happy coding!
 ...

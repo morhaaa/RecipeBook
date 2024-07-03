@@ -1,30 +1,53 @@
-# React + TypeScript + Vite
+# Client of RecipeBook
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Description
 
-Currently, two official plugins are available:
+This project, Recipe Book, is a web application built using React and Vite. It allows users to browse, search, and upload their favorite recipes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Technologies Used
 
-## Expanding the ESLint configuration
+- **React**
+- **Vite**
+- **Tailwind CSS**
+- **Axios**
+- **Shadcn UI**
+- **React Hook Form**
+- **React Query**
+- **React Router DOM**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Project Structure
 
-- Configure the top-level `parserOptions` property like this:
+- **src/**
+  - **components/**: Reusable React components.
+  - **pages/**: React components representing different pages of the application.
+  - **hooks/**: Custom React hooks
+  - **api/**: API communication (using Axios).
+  - **lib/**: Utility functions.
+  - **App.tsx**: Root component where routing and main app logic is defined.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Getting Started
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. **Clone the repository**:
+
+   ```
+   git clone https://github.com/morhaaa/RecipeBook.git
+   cd client
+   ```
+
+2. **Install dependencies**:
+
+   ```
+   npm install
+   ```
+
+3. **Run the development server**:
+
+   ```
+   npm run dev
+   ```
+
+4. **Open your browser** and navigate to `http://localhost:5173`
+
+### Related
+
+If you want to work with the backend of this project, start the server in its dedicated folder as per its specific instructions.
