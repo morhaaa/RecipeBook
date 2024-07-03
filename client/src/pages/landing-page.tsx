@@ -31,7 +31,7 @@ function LandingPage() {
           </motion.span>
         </h1>
         <motion.span
-          className="bg-orange-300/40 rounded-md py-1 px-3 text-primary-orange font-medium"
+          className="bg-orange-200/40 border border-orange-200 rounded-md py-1 px-3 text-primary-orange font-medium shadow"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.3, delay: 1.6 }}
@@ -53,7 +53,7 @@ function LandingPage() {
         </motion.p>
         <Link to={"/recipes"}>
           <motion.button
-            className="bg-btn-primary hover:bg-btn-primary-hovered w-48 md:w-60 py-1.5 md:py-2 lg:py-3 rounded-md text-white font-bold"
+            className="bg-btn-primary hover:bg-btn-primary-hovered w-48 md:w-60 py-1.5 md:py-2 lg:py-3 rounded-md text-white font-bold shadow"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.3, delay: 1.6 }}
@@ -69,7 +69,7 @@ function LandingPage() {
         transition={{ duration: 1.3, delay: 1.6 }}
       >
         <img
-          src={"/assets/placeholder.png"}
+          src={"/assets/hero_image.png"}
           alt={"Hero image"}
           className="w-full h-auto max-w-md md:max-w-full"
         />
