@@ -45,3 +45,16 @@ export const getRecipeInfo = async (recipeId: string): Promise<Recipe> => {
   });
   return response.data;
 };
+
+export const createRecipe = async (req: RecipeBody): Promise<Recipe> => {
+  const body = {
+    ...req,
+    ingredients: req.ingredients.join(","),
+  };
+  const response = await axiosInstance.post(`/recipes`, body, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return response.data;
+};

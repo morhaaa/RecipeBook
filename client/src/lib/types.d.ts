@@ -42,3 +42,13 @@ type CommentBody = {
   rating: number;
   date: Date;
 };
+
+type RecipeBody = {
+  name: string;
+  instruction: string;
+  ingredients: string[];
+  cuisineId: string;
+  dietId: string;
+  difficultyId: string;
+  image: File;
+};

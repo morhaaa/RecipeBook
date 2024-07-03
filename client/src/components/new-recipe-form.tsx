@@ -2,6 +2,11 @@ import { useState } from "react";
 import useCategories from "../hook/useCategories";
 import { CircleX, ImageUp } from "lucide-react";
 import { useFieldArray, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+
+interface NewRecipeFormProps {
+  onSubmitForm: (request: RecipeBody) => void;
+}
 
 interface FormData {
   name: string;
@@ -10,15 +15,20 @@ interface FormData {
   cuisineId: string;
   dietId: string;
   difficultyId: string;
-  image: File;
 }
 
-function NewRecipeForm() {
+function NewRecipeForm({ onSubmitForm }: NewRecipeFormProps) {
   const { cuisines, diets, difficulties } = useCategories();
   const [ingredientInput, setIngredientInput] = useState("");
   const [image, setImage] = useState<File | null>(null);
 
-  const { register, control, handleSubmit, reset } = useForm<FormData>();
+  const {
+    register,
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormData>();
   const { fields, append, remove } = useFieldArray({
     control,
     name: "ingredients",
@@ -52,15 +62,34 @@ function NewRecipeForm() {
   };
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
-    reset();
-    setImage(null);
+    if (image) {
+      const body: RecipeBody = {
+        ...data,
+        ingredients: data.ingredients.map((item) => item.name),
+        image: image,
+      };
+      onSubmitForm(body);
+      reset();
+      setImage(null);
+    } else {
+      toast.error("Image is required");
+    }
+  };
+
+  const onInvalid = () => {
+    if (Object.keys(errors).length > 0) {
+      Object.keys(errors).forEach((key) => {
+        const errorMessage = errors[key as keyof FormData]?.message;
+        if (errorMessage) {
+          toast.error(errorMessage);
+        }
+      });
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex gap-10">
+    <form onSubmit={handleSubmit(onSubmit, onInvalid)} className="flex gap-10">
       {/* left side*/}
-
       <div className="flex flex-col gap-2">
         {image ? (
           <div className="relative">
@@ -157,7 +186,7 @@ function NewRecipeForm() {
           <input
             type="string"
             id="name"
-            {...register("name")}
+            {...register("name", { required: "Title is required" })}
             placeholder="Pasta al tartufo"
             className="w-full p-2 border rounded-lg shadow-md"
             min={0}
@@ -172,7 +201,9 @@ function NewRecipeForm() {
           <textarea
             id="instruction"
             placeholder="Pasta al tartufo"
-            {...register("instruction")}
+            {...register("instruction", {
+              required: "Instruction are required",
+            })}
             className="w-full p-2  border rounded-lg shadow-md"
           />
         </div>
