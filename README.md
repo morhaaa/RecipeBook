@@ -1,7 +1,7 @@
 <!---
 Hi! We're happy you opened this file, not everyone does!
-To let us know you did, paste a capybara picture 
-in the How to Run section 😊 
+To let us know you did, paste a capybara picture
+in the How to Run section 😊
 These will be extra points for you!
 -->
 
@@ -29,11 +29,11 @@ written out. Please, write there instructions on how to run your code: we will u
 
 Your work will be assessed according to several criteria. As an example, these include:
 
-* Code quality
-* Design Patterns
-* Project Structure
-* Work quality (commits, branches, workflow, tests, ...)
-* Provided Documentation
+- Code quality
+- Design Patterns
+- Project Structure
+- Work quality (commits, branches, workflow, tests, ...)
+- Provided Documentation
 
 #### A Friendly Reminder:
 
@@ -62,7 +62,7 @@ fewer constraints as possible on your work. We appreciate if you could record an
 together with any questions that you will ask in a real-world scenario. If you want to choose our stack instead, we
 generally work with TypeScript and React.
 
----   
+---
 
 ### Problem Domain
 
@@ -94,10 +94,76 @@ Design a form that allows users to add new recipes by providing details such as 
 instructions, cuisine type, and dietary preference and an image.
 
 ### Challenge #4: Recipe Details and Comments
+
 Develop a recipe details page where users can view the full recipe, including ingredients, instructions, and user
 comments. Enable users to add comments and rate the recipe, displaying the average rating and updating the list of
 comments.
 
 ## How to run
 
+This repository contains the `server` and `client` of RecipeBook. Below are the instructions to start each part of the project.
+
+For more information on the specifics of each project, you can refer to the individual README files:
+
+- [Server README](https://github.com/morhaaa/RecipeBook/blob/main/server/README.md)
+- [Client README](https://github.com/morhaaa/RecipeBook/blob/main/client/README.md)
+
+## Option 1: Manual Start
+
+### Starting the Server
+
+1. Navigate to the server folder:
+
+   ```bash
+   cd server
+   ```
+
+2. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the server:
+   ```bash
+   npm start
+   ```
+
+### Starting the Client
+
+1. Open a new terminal and navigate to the client folder:
+
+   ```bash
+   cd client
+   ```
+
+2. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the client:
+   ```bash
+   npm run dev
+   ```
+
+## Option 2: Like a True Hacker 😈
+
+Use the `script.sh` bash script to start both the server and the client with a single command.
+
+1. Ensure the script has execution permissions:
+
+   ```bash
+   chmod +x script.sh
+   ```
+
+2. Run the script:
+   ```bash
+   ./script.sh
+   ```
+
+With these instructions, you will be able to start this fantastic project built by [Mohamed Rhanmi]("https://www.mohamedrhanmi.com/") & [Xtream]("https://xtreamers.io/").
+
+Happy coding!
 ...
