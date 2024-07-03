@@ -10,6 +10,7 @@ import { useState } from "react";
 import { LoaderCircle } from "lucide-react";
 import Pagination from "../components/pagination";
 import CreateRecipe from "../components/new-recipe-modal";
+import { ScrollRestoration } from "react-router-dom";
 
 function Recipes() {
   //State for tracking all filters
@@ -47,6 +48,7 @@ function Recipes() {
 
   //Next page
   const onNext = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setActiveFilters((prevFilters) => ({
       ...prevFilters,
       page: Number(prevFilters.page || 1) + 1,
@@ -55,6 +57,7 @@ function Recipes() {
 
   //Previous page
   const onBack = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setActiveFilters((prevFilters) => ({
       ...prevFilters,
       page: Math.max(Number(prevFilters.page || 2) - 1, 1),
@@ -76,6 +79,7 @@ function Recipes() {
   return (
     <main className="min-h-screen">
       <Header />
+      <ScrollRestoration />
       <div className="px-20 pb-10 pt-24 flex flex-col gap-y-5">
         <SearchBar onSearch={onSearch} value={activeFilters.q || ""} />
         <div className="flex justify-between w-full items-start">

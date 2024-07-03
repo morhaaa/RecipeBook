@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { ScrollRestoration, useParams } from "react-router-dom";
 import { getRecipeInfo } from "../api/recipes";
 import { resolvePath } from "../lib/utils";
 import Header from "../components/header";
@@ -30,6 +30,7 @@ function RecipePage() {
   return (
     <div className="w-screen min-h-screen flex flex-col">
       <Header />
+      <ScrollRestoration />
       {isLoading ? (
         <div className=" flex-1 flex items-center justify-center  min-h-[80vh] text-zinc-500">
           <LoaderCircle
