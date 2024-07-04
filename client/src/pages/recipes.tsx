@@ -71,19 +71,25 @@ function Recipes() {
 
   2. !(data.length < 8 && activeFilters.page === 1):
     - Check if 'data.length' is less than 8 and we are on page 1.
-    - If both conditions are true (less than 8 elements and on page 1), the pagination component won't be displayed.
+    - If both conditions are true the pagination component won't be displayed.
   */
   const showPagination =
     data && data.length > 0 && !(data.length < 8 && activeFilters.page === 1);
+
+  // Destructure activeFilters to handle each filter separately in different components
+  const { q, page, ...categoriesFilters } = activeFilters;
 
   return (
     <main className="min-h-screen">
       <Header />
       <ScrollRestoration />
       <div className="px-20 pb-10 pt-24 flex flex-col gap-y-5">
-        <SearchBar onSearch={onSearch} value={activeFilters.q || ""} />
+        <SearchBar onSearch={onSearch} value={q || ""} />
         <div className="flex justify-between w-full items-start">
-          <Filters toggleFilters={toggleFilter} activeFilters={activeFilters} />
+          <Filters
+            toggleFilters={toggleFilter}
+            activeFilters={categoriesFilters}
+          />
           <CreateRecipe />
         </div>
 
@@ -120,7 +126,7 @@ function Recipes() {
         </div>
         {showPagination && (
           <Pagination
-            activePage={activeFilters.page}
+            activePage={page}
             lastPage={data.length < 8}
             onNext={onNext}
             onBack={onBack}

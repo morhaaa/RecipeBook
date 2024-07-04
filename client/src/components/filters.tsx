@@ -10,7 +10,6 @@ import {
   DropdownMenuSubContent,
 } from "./ui/dropdown-menu";
 import useCategories from "../hook/useCategories";
-import { useMemo } from "react";
 
 interface FiltersProps {
   toggleFilters: (key: FilterKey, value?: string) => void;
@@ -21,11 +20,6 @@ function Filters({ toggleFilters, activeFilters }: FiltersProps) {
   const { cuisines, difficulties, diets, isLoading, getCategoryLabel } =
     useCategories();
 
-  const filtersToDisplay = useMemo(
-    () =>
-      Object.keys(activeFilters).filter((key) => !["q", "page"].includes(key)),
-    [activeFilters]
-  );
   return (
     <div className="flex gap-x-4 items-center">
       <DropdownMenu>
@@ -130,7 +124,7 @@ function Filters({ toggleFilters, activeFilters }: FiltersProps) {
         )}
       </DropdownMenu>
 
-      {filtersToDisplay.map((item, index) => (
+      {Object.keys(activeFilters).map((item, index) => (
         <div
           className="border rounded-md h-8 text-secondary border-gray-300 hover:bg-slate-200 font-medium shadow flex gap-1 items-center cursor-pointer "
           key={index}
