@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, ScrollRestoration, useParams } from "react-router-dom";
 import { getRecipeInfo } from "../api/recipes";
-import { resolvePath } from "../lib/utils";
+import { calculateAverageRating, resolvePath } from "../lib/utils";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import {
@@ -15,6 +15,7 @@ import {
 import toast from "react-hot-toast";
 import Comments from "../components/comments";
 import { getComments } from "../api/comments";
+import { useMemo } from "react";
 
 function RecipePage() {
   const { recipeId } = useParams();
@@ -54,6 +55,14 @@ function RecipePage() {
       `Something went wrong with the comments: ${errorComments?.message}`
     );
   }
+
+  const averageRating: number = useMemo(() => {
+    if (commentsData && commentsData.length > 0) {
+      const ratings = commentsData.map((comment) => Number(comment.rating));
+      return calculateAverageRating(ratings);
+    }
+    return 0;
+  }, [commentsData]);
 
   return (
     <div className="w-screen min-h-screen flex flex-col">
@@ -104,7 +113,15 @@ function RecipePage() {
                       {recipeData.difficulty.name}
                     </span>
                   </div>
-                  <p className="text-primary-orange text-lg font-medium">5 ★</p>
+                  {averageRating === 0 ? (
+                    <span className="text-secondary ml-1">
+                      No rating available ★
+                    </span>
+                  ) : (
+                    <p className="text-primary-orange text-lg font-medium">
+                      {averageRating} ★
+                    </p>
+                  )}
                 </div>
               </div>
               {/* Body */}

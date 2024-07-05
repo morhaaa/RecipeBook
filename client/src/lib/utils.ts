@@ -11,3 +11,14 @@ export function cn(...inputs: ClassValue[]) {
 export function resolvePath(path: string): string {
   return BASE_URL + path;
 }
+
+export function calculateAverageRating(numbers: number[]): number {
+  const sum = numbers.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  );
+  const average = sum / numbers.length;
+  const roundedAverage = Math.round(average * 10) / 10;
+
+  return roundedAverage;
+}
