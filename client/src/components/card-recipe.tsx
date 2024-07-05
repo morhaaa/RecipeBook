@@ -17,7 +17,6 @@ const CardRecipe: React.FC<CardRecipeProps> = ({
   id,
   imageSrc,
   title,
-  rating,
   diet,
   cuisine,
   description,
@@ -41,9 +40,9 @@ const CardRecipe: React.FC<CardRecipeProps> = ({
       </div>
       <div className="px-3 pb-4 pt-1 flex flex-col gap-1 bg-gradient-to-b from-slate-100 to-white rounded-t-md">
         <div className="flex flex-col gap-0.5">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center pt-2">
             <p className="font-bold text-xl truncate">{title}</p>
-            <p className="text-primary-orange text-lg font-bold">{rating} ★</p>
+            {/* <p className="text-primary-orange text-lg font-bold">{rating} ★</p> */}
           </div>
         </div>
         <div className="text-sm flex flex-col h-28">
