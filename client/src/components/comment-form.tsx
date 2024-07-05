@@ -1,8 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import toast from "react-hot-toast";
 import { postComment } from "../api/comments";
 import { useParams } from "react-router-dom";
+import clsx from "clsx";
 
 type Inputs = {
   comment: string;
@@ -18,8 +19,12 @@ function CommentForm() {
     register,
     handleSubmit,
     reset,
+    control,
+    watch,
     formState: { errors, isValid, isSubmitting },
   } = useForm<Inputs>();
+
+  const ratingValue = watch("rating", 0);
 
   //Create a new Comment
   const queryClient = useQueryClient();
@@ -64,23 +69,33 @@ function CommentForm() {
             rows={4}
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 flex flex-col">
           <label htmlFor="rating" className="text-gray-700 font-bold mb-2">
-            Rating{" "}
-            <span className="font-medium"> (number between 0 and 5)</span>
+            Rating
           </label>
-          <input
-            type="number"
-            id="rating"
-            {...register("rating", {
-              required: "Rating is required",
-              min: { value: 0, message: "Rating must be at least 0" },
-              max: { value: 5, message: "Rating cannot exceed 5" },
-            })}
-            className="w-full p-2 border rounded-lg"
-            min={0}
-            max={5}
-          />
+          <div className="flex gap-x-2">
+            {Array.from(Array(5)).map((_, i) => (
+              <Controller
+                key={i}
+                control={control}
+                rules={{ required: true }}
+                name="rating"
+                render={({ field: { onChange } }) => (
+                  <span
+                    className={clsx(
+                      "text-2xl cursor-pointer drop-shadow-sm",
+                      i + 1 > ratingValue
+                        ? "text-slate-300"
+                        : "text-primary-orange"
+                    )}
+                    onClick={() => onChange(i + 1)}
+                  >
+                    ★
+                  </span>
+                )}
+              />
+            ))}
+          </div>
         </div>
         <div className="mb-4 w-full flex justify-end">
           <button
