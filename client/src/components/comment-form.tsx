@@ -1,16 +1,19 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm, SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
-
-interface CommentFormProps {
-  onSubmit: (formaData: CommentBody) => void;
-}
+import { postComment } from "../api/comments";
+import { useParams } from "react-router-dom";
 
 type Inputs = {
   comment: string;
   rating: number;
 };
 
-function CommentForm({ onSubmit }: CommentFormProps) {
+function CommentForm() {
+  const { recipeId } = useParams();
+
+  if (!recipeId) return;
+
   const {
     register,
     handleSubmit,
@@ -18,9 +21,22 @@ function CommentForm({ onSubmit }: CommentFormProps) {
     formState: { errors, isValid, isSubmitting },
   } = useForm<Inputs>();
 
+  //Create a new Comment
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: (req: CommentBody) => postComment(req, recipeId),
+    onError: (error: Error) => {
+      toast.error(`Something went wrong: ${error.message}`);
+    },
+    onSuccess: () => {
+      toast.success("Comment created 🎉");
+      queryClient.invalidateQueries({ queryKey: [`comments_${recipeId}`] });
+    },
+  });
+
   const onSubmitForm: SubmitHandler<Inputs> = (data) => {
     const request: CommentBody = { ...data, date: new Date() };
-    onSubmit(request);
+    mutation.mutate(request);
     reset();
   };
 
