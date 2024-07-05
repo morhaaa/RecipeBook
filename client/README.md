@@ -9,6 +9,7 @@ This project, Recipe Book, is a web application built using React and Vite. It a
 - **React**
 - **Vite**
 - **Tailwind CSS**
+- **Framer motion**
 - **Axios**
 - **Shadcn UI**
 - **React Hook Form**
